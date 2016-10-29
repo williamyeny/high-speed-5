@@ -90,6 +90,7 @@ io.on("connection", function(socket) {
 
     for (var key in games[gameId]) {
       socket.broadcast.to(key).emit("rematch", r);
+      socket.emit("rematch", r);
     }
   });
 
