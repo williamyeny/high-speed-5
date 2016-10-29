@@ -23,7 +23,7 @@ if (max>threshhold && !highFived){
   setTimeout(function() {
     highFived = true;
     document.getElementById("status").innerHTML = "High FIVE! Max value was " + max;
-  }, 1500);
+  }, 1000);
 }
 
 //document.getElementById("acc").innerHTML = document.getElementById("acc").innerHTML +"<br>" + x+ " " + y + " " + z;
