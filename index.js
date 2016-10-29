@@ -79,6 +79,30 @@ io.on("connection", function(socket) {
     }
   });
 
+  socket.on("done", function(max) {
+    for (var key in games) {
+      if (socket.id in games[key]) {
+        games[key][socket.id].max = max;
+
+        for (var key2 in games[key]) {
+          if (games[key][key2] != socket.id) {
+            if (games[key][key2].max != null) {
+              if (games[key][key2].max > games[key][socket.id].max) {
+                socket.broadcast.to(key2).emit("done", "win");
+                socket.emit("done", "lose");
+              } else {
+                socket.broadcast.to(key2).emit("done", "lose");
+                socket.emit("done", "win");
+              }
+            }
+
+          }
+        }
+      }
+    }
+
+  });
+
   socket.on("disconnect", function(client) {
     for (var key in games) {
       if (socket.id in games[key]) {

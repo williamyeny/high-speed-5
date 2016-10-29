@@ -17,8 +17,15 @@ socket.on("init", function(data) {
   }
 });
 
+socket.on("done", function(s) {
+  if (s == "win") {
+    document.getElementById("status").innerHTML = "You've won!! Max value was " + max;
+  } else {
+    document.getElementById("status").innerHTML = "You've lost... Max value was " + max;
+  }
+});
+
 socket.on("quit", function() {
-  console.log("AWDIOWFNIU00");
   running = false;
   document.getElementById("status").innerHTML = "Waiting for player to join...";
 });
@@ -27,6 +34,8 @@ function start() {
   document.getElementById("status").innerHTML = "Ready to high five!";
   running = true;
 }
+
+
 
 
 
@@ -47,7 +56,9 @@ window.ondevicemotion = function(event){
     if (max>threshhold && !highFived){
       setTimeout(function() {
         highFived = true;
-        document.getElementById("status").innerHTML = "High FIVE! Max value was " + max;
+        // document.getElementById("status").innerHTML = "High FIVE! Max value was " + max;
+
+        socket.emit("done", max);
       }, 1000);
     }
   }
