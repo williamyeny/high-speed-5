@@ -26,17 +26,24 @@ app.get("/create", function(req, res) {
   } while (randomId in games);
 
   games[randomId] = {};
-  res.redirect("/game/randomId");
+  res.redirect("/game/" + randomId);
 });
 
 app.get("/game/:gameId", function(req, res) {
+  var gameId = req.params.gameId;
+  console.log("GET");
+  if (!(gameId in games)) {
+    res.render("oops", {message: "Game not found!"});
+    return;
+  } else {
+    console.log("gameId: " + gameId);
+    console.log("games: " + games);
+  }
   if (Object.keys(games[gameId]).length == 2) {
     res.render('oops', {message: "This game is full!"});
   }
 
-  if (!gameId in games) {
-    res.render("oops", {message: "Game not found!"});
-  }
+
 
   res.render('game', {gameId: gameId});
 });
@@ -52,9 +59,12 @@ io.on("connection", function(socket) {
   console.log("client connected");
 
   socket.on("init", function(gameId) {
+    if (!(gameId in games)) {
+      games[gameId] = {};
+    }
     games[gameId][socket.id] = {};
     socket.emit("init", socket.id);
-    console.log("client initiated");
+    console.log("client initiated: " + socket.id);
   });
 
   socket.on("disconnect", function(client) {
@@ -64,6 +74,7 @@ io.on("connection", function(socket) {
       }
       if (Object.keys(games[key]).length == 0) { //if there are no more players, delete server
         delete games[key];
+        console.log()
       }
     }
     console.log("disconnected");
