@@ -12,10 +12,11 @@ var threshhold = 40;
 var max = 0;
 window.ondevicemotion = function(event){
   var acce = Math.abs(event.accelerationIncludingGravity.x) + Math.abs(event.accelerationIncludingGravity.y)+ Math.abs(event.accelerationIncludingGravity.z);
+  document.getElementById("acc").innerHTML = max;
 
 if (acce>max && !highFiving){
   max=acce;
-  document.getElementById("acc").innerHTML = max;
+
 }
 
 if (max>threshhold){
