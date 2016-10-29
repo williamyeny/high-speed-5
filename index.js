@@ -85,7 +85,7 @@ io.on("connection", function(socket) {
         games[key][socket.id].max = max;
 
         for (var key2 in games[key]) {
-          if (games[key][key2] != socket.id) {
+          if (key2 != socket.id) {
             if (games[key][key2].max != null) {
               if (games[key][key2].max > games[key][socket.id].max) {
                 socket.broadcast.to(key2).emit("done", "win");

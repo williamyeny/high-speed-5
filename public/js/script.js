@@ -1,7 +1,6 @@
 var socket = io();
 var gameId = document.getElementById("gameId").innerHTML;
 var socketId;
-var highFiving = false;
 
 socket.on("start", function() {
   start();
