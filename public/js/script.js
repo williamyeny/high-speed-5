@@ -19,7 +19,7 @@ if (acce>max){
   document.getElementById("acc").innerHTML = max;
 }
 
-if (max>threshhold && highFived){
+if (max>threshhold && !highFived){
   setTimeout(function() {
     highFived = true;
     document.getElementById("status").innerHTML = "High FIVE! Max value was " + max;
