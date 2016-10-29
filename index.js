@@ -49,13 +49,23 @@ var server = app.listen(port, function() {
 var io = require('socket.io')(server);
 
 io.on("connection", function(socket) {
-  console.log("connected");
+  console.log("client connected");
 
-  socket.on("get data", function() {
-
+  socket.on("init", function(gameId) {
+    games[gameId][socket.id] = {};
+    socket.emit("init", socket.id);
+    console.log("client initiated");
   });
 
   socket.on("disconnect", function(client) {
+    for (var key in games) {
+      if (socket.id in games[key]) {
+        delete games[key][socket.id]; //remove id from game
+      }
+      if (Object.keys(games[key]).length == 0) { //if there are no more players, delete server
+        delete games[key];
+      }
+    }
     console.log("disconnected");
   });
 });
