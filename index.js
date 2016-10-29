@@ -62,18 +62,37 @@ io.on("connection", function(socket) {
       games[gameId] = {};
     }
     games[gameId][socket.id] = {};
-    socket.emit("init", socket.id);
+    socket.emit("init", {id:socket.id, number:Object.keys(games[gameId]).length});
     console.log("client initiated: " + socket.id);
+  });
+
+  socket.on("start", function() {
+    for (var key in games) {
+      if (socket.id in games[key]) {
+        for (var key2 in games[key]) {
+          if (key2 != socket.id) {
+            socket.broadcast.to(key2).emit('start');
+            console.log(key2);
+          }
+        }
+      }
+    }
   });
 
   socket.on("disconnect", function(client) {
     for (var key in games) {
       if (socket.id in games[key]) {
         delete games[key][socket.id]; //remove id from game
-      }
-      if (Object.keys(games[key]).length == 0) { //if there are no more players, delete server
-        delete games[key];
-        console.log()
+
+        if (Object.keys(games[key]).length == 0) { //if there are no more players, delete server
+          delete games[key];
+        } else {
+          for (var key2 in games[key]) { //tell em whoops! they left.
+            socket.broadcast.to(key2).emit("quit");
+            console.log(key2);
+            return;
+          }
+        }
       }
     }
     console.log("disconnected");
