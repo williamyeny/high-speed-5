@@ -22,6 +22,7 @@ socket.on("done", function(s) {
   } else {
     document.getElementById("status").innerHTML = "You've lost... Max value was " + max;
   }
+  document.getElementById("rematch").style.display= "inline";
 });
 
 socket.on("quit", function() {
