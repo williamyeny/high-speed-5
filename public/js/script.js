@@ -7,7 +7,7 @@ socket.on("init", function(id) {
   socketId = id;
 });
 
-var threshhold = 15;
+var threshhold = 40;
 
 var max = 0;
 window.ondevicemotion = function(event){
