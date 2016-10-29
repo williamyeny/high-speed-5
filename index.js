@@ -94,6 +94,7 @@ io.on("connection", function(socket) {
                 socket.broadcast.to(key2).emit("done", "lose");
                 socket.emit("done", "win");
               }
+              return;
             }
 
           }
