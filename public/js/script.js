@@ -34,9 +34,9 @@ socket.on("quit", function() {
   document.getElementById("status").innerHTML = "Waiting for player to join...";
 });
 
-document.getElementById("rematch").onclick(function() {
+document.getElementById("rematch").onclick = function() {
   socket.emit("rematch", gameId);
-});
+};
 
 function start() {
   document.getElementById("status").innerHTML = "Ready to high five!";
