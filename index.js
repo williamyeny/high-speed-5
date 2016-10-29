@@ -18,14 +18,19 @@ app.get("/", function(req, res) {
   res.render('index');
 });
 
-app.get("/create", function(req, res) {
-  var randomId = 0;
+function randomId() {
+  var r = 0;
   do {
-   randomId  = Math.floor(Math.random()*900000) + 100000;
-  } while (randomId in games);
+   r  = Math.floor(Math.random()*900000) + 100000;
+  } while (r in games);
+  return r;
+}
 
-  games[randomId] = {};
-  res.redirect("/game/" + randomId);
+app.get("/create", function(req, res) {
+
+  r = randomId();
+  games[r] = {};
+  res.redirect("/game/" + r);
 });
 
 app.get("/game/:gameId", function(req, res) {
@@ -76,6 +81,15 @@ io.on("connection", function(socket) {
           }
         }
       }
+    }
+  });
+
+  socket.on("rematch", function(gameId) {
+    r = randomId();
+    games[r] = {};
+
+    for (var key in games[gameId]) {
+      socket.broadcast.to(key).emit("rematch", r);
     }
   });
 
