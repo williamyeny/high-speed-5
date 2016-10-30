@@ -46,9 +46,11 @@ function start() {
   running = true;
 }
 
-window.onbeforeunload = function(){
-  return "Are you sure you want to disconnect?";
-};
+document.getElementById("home").onclick = function() {
+  if(confirm("Are you sure you want to disconnect?")) {
+    window.location = "/";
+  }
+}
 
 
 
