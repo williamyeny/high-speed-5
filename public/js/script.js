@@ -62,8 +62,6 @@ var running = false;
 var max = 0;
 if (window.DeviceMotionEvent) {
 
-  webkitRequestFullscreen();
-
   window.ondevicemotion = function(event){
     if (running) {
       var acce = Math.abs(event.accelerationIncludingGravity.x) + Math.abs(event.accelerationIncludingGravity.y)+ Math.abs(event.accelerationIncludingGravity.z);
@@ -89,6 +87,4 @@ if (window.DeviceMotionEvent) {
 
   //document.getElementById("acc").innerHTML = document.getElementById("acc").innerHTML +"<br>" + x+ " " + y + " " + z;
   };
-} else {
-
 }
