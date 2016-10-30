@@ -75,12 +75,14 @@ if (window.DeviceMotionEvent) {
 
       }
 
-      if (max>threshhold && !highFived){
+      if (max>threshhold){
         setTimeout(function() {
-          highFived = true;
-          document.getElementById("status").innerHTML = "// WAITING FOR OPPONENT'S HIGH FIVE //";
+          if (!highFived) {
+            highFived = true;
+            document.getElementById("status").innerHTML = "// HIGH FIVE RECORDED //";
 
-          socket.emit("done", max);
+            socket.emit("done", max);
+          }
         }, 1000);
       }
     }
