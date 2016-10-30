@@ -5,17 +5,18 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="/css/styles.css">
   <script src="/socket.io/socket.io.js"></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 <body>
-  <a href="/">Create a New Game</a>
+  <a href="#">GAME ID: <%= gameId %></a>
+  <div id="container">
+    <p id="gameId"></p>
+    <p id="acc"></p>
+    <p id="status">// WAITING FOR OPPONENT //</p>
 
-  <p id="gameId"><%= gameId %></p>
-  <p id="acc"></p>
-  <p id="status">Waiting for player to join...</p>
-
-  <a id="rematch" href="#">Rematch!</a>
+    <a id="rematch" href="#">Rematch!</a>
+  </div>
   <script src="/js/script.js"></script>
 </body>
 

@@ -1,3 +1,71 @@
 #rematch {
   display:none;
 }
+
+* {
+  margin:0;
+  padding:0;
+  font-family:sans-serif;
+}
+
+a {
+  display:inline-block;
+  color:white;
+  padding:20px 0px 20px 0px;
+
+  width:100%;
+  background-color:black;
+  font-weight: 600;
+  letter-spacing:3px;
+  text-decoration: none;
+  text-align: center;
+  margin-bottom:20px;
+  font-size: 16px;
+}
+
+.underline:after{
+  content:"";
+  position:absolute;
+  /*position: relative;*/
+  left:0;
+  bottom:0;
+  right:0;
+  margin:auto;
+  background:black;
+  height:10px;
+  /*width:20px;*/
+
+}
+
+p {
+  font-size:16px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-weight:800;
+
+  text-align: center;
+  padding:10px 20px 10px 20px;
+  border:7px black solid;
+  word-spacing:99999px;
+  width:70%;
+  margin:0 auto;
+  margin-bottom:90px;
+}
+
+#container {
+
+  width:80%;
+  margin:0 auto;
+  margin-top:100px;
+}
+
+@media only screen and (min-width: 450px) {
+  h1 {
+    width:200px;
+  }
+
+}

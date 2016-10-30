@@ -22,16 +22,16 @@ socket.on("init", function(data) {
 
 socket.on("done", function(s) {
   if (s == "win") {
-    document.getElementById("status").innerHTML = "You've won!! Max value was " + max;
+    document.getElementById("status").innerHTML = "// VICTORY | SCORE: " + Math.round(10*x)/10 + "//";
   } else {
-    document.getElementById("status").innerHTML = "You've lost... Max value was " + max;
+    document.getElementById("status").innerHTML = "// DEFEAT | SCORE: " + Math.round(10*x)/10 + "//";
   }
   document.getElementById("rematch").style.display= "inline";
 });
 
 socket.on("quit", function() {
   running = false;
-  document.getElementById("status").innerHTML = "Waiting for player to join...";
+  document.getElementById("status").innerHTML = "// WAITING FOR OPPONENT //";
 });
 
 document.getElementById("rematch").onclick = function() {
@@ -39,7 +39,7 @@ document.getElementById("rematch").onclick = function() {
 };
 
 function start() {
-  document.getElementById("status").innerHTML = "Ready to high five!";
+  document.getElementById("status").innerHTML = "// READY TO HIGH FIVE //";
   running = true;
 }
 
