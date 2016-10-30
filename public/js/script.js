@@ -56,28 +56,35 @@ var highFived = false;
 var running = false;
 
 var max = 0;
-window.ondevicemotion = function(event){
-  if (running) {
-    var acce = Math.abs(event.accelerationIncludingGravity.x) + Math.abs(event.accelerationIncludingGravity.y)+ Math.abs(event.accelerationIncludingGravity.z);
-    if (!highFived) {
-      document.getElementById("acc").innerHTML = "ACCELERATION: " + (Math.round(10*acce)/10).toFixed(1);
-    } else {
-      document.getElementById("acc").innerHTML = "ACCELERATION: " + (Math.round(10*max)/10).toFixed(1);
+if (window.DeviceMotionEvent) {
+
+  document.webkitRequestFullscreen();
+
+  window.ondevicemotion = function(event){
+    if (running) {
+      var acce = Math.abs(event.accelerationIncludingGravity.x) + Math.abs(event.accelerationIncludingGravity.y)+ Math.abs(event.accelerationIncludingGravity.z);
+      if (!highFived) {
+        document.getElementById("acc").innerHTML = "ACCELERATION: " + (Math.round(10*acce)/10).toFixed(1);
+      } else {
+        document.getElementById("acc").innerHTML = "ACCELERATION: " + (Math.round(10*max)/10).toFixed(1);
+      }
+      if (acce>max){
+        max=acce;
+
+      }
+
+      if (max>threshhold && !highFived){
+        setTimeout(function() {
+          highFived = true;
+          // document.getElementById("status").innerHTML = "High FIVE! Max value was " + max;
+
+          socket.emit("done", max);
+        }, 1000);
+      }
     }
-    if (acce>max){
-      max=acce;
 
-    }
+  //document.getElementById("acc").innerHTML = document.getElementById("acc").innerHTML +"<br>" + x+ " " + y + " " + z;
+  };
+} else {
 
-    if (max>threshhold && !highFived){
-      setTimeout(function() {
-        highFived = true;
-        // document.getElementById("status").innerHTML = "High FIVE! Max value was " + max;
-
-        socket.emit("done", max);
-      }, 1000);
-    }
-  }
-
-//document.getElementById("acc").innerHTML = document.getElementById("acc").innerHTML +"<br>" + x+ " " + y + " " + z;
-};
+}
