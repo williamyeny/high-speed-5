@@ -17,6 +17,7 @@
 
 #gameId {
   padding-left:30px;
+  width:90%;
   text-align: left;
 }
 
@@ -92,7 +93,7 @@ h1:hover {
 
   width:90%;
   margin:0 auto;
-  margin-top:100px;
+  margin-top:80px;
 }
 
 @media only screen and (min-width: 450px) {
