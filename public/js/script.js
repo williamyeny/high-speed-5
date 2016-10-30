@@ -28,6 +28,10 @@ socket.on("done", function(s) {
   }
   document.getElementById("gameId").id = "rematch";
   document.getElementById("rematch").innerHTML = "REMATCH";
+
+  document.getElementById("rematch").onclick = function() {
+    socket.emit("rematch", gameId);
+  };
 });
 
 socket.on("quit", function() {
@@ -35,9 +39,7 @@ socket.on("quit", function() {
   document.getElementById("status").innerHTML = "// WAITING FOR OPPONENT //";
 });
 
-document.getElementById("rematch").onclick = function() {
-  socket.emit("rematch", gameId);
-};
+
 
 function start() {
   document.getElementById("status").innerHTML = "// READY TO HIGH FIVE //";
