@@ -78,7 +78,7 @@ if (window.DeviceMotionEvent) {
       if (max>threshhold && !highFived){
         setTimeout(function() {
           highFived = true;
-          // document.getElementById("status").innerHTML = "High FIVE! Max value was " + max;
+          document.getElementById("status").innerHTML = "// WAITING FOR OPPONENT'S HIGH FIVE //";
 
           socket.emit("done", max);
         }, 1000);
