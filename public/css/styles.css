@@ -44,12 +44,20 @@ h1 {
   font-weight:800;
 
   text-align: center;
-  padding:10px 20px 10px 20px;
+  padding:40px 10px 40px 10px;
   border:7px black solid;
   word-spacing:99999px;
   width:70%;
   margin:0 auto;
   margin-bottom:90px;
+  transition-duration:0.25s;
+}
+
+h1:hover {
+  color:white;
+  background-color:black;
+  border-color:white;
+  transition-duration:0.25s;
 }
 
 #container {
