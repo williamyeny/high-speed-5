@@ -4,6 +4,22 @@
   font-family:sans-serif;
 }
 
+
+
+.icon-buttons {
+  position:absolute;
+  top:0;
+  width:60px;
+}
+
+.left { left:0; }
+.right { right:0; }
+
+#gameId {
+  padding-left:30px;
+  text-align: left;
+}
+
 a {
   display:inline-block;
   color:white;

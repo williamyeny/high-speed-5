@@ -58,7 +58,7 @@ var running = false;
 var max = 0;
 if (window.DeviceMotionEvent) {
 
-  document.webkitRequestFullscreen();
+  webkitRequestFullscreen();
 
   window.ondevicemotion = function(event){
     if (running) {
