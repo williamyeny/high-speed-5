@@ -57,14 +57,14 @@ var max = 0;
 window.ondevicemotion = function(event){
   if (running) {
     var acce = Math.abs(event.accelerationIncludingGravity.x) + Math.abs(event.accelerationIncludingGravity.y)+ Math.abs(event.accelerationIncludingGravity.z);
-
+    if (!highFived) {
+      document.getElementById("acc").innerHTML = "ACCELERATION: " + Math.round(10*acce)/10;
+    } else {
+      document.getElementById("acc").innerHTML = "MAX ACCELERATION: " + Math.round(10*max)/10;
+    }
     if (acce>max){
       max=acce;
-      if (!highFived) {
-        document.getElementById("acc").innerHTML = "ACCELERATION: " + Math.round(10*acce)/10;
-      } else {
-        document.getElementById("acc").innerHTML = "MAX ACCELERATION: " + Math.round(10*max)/10;
-      }
+
     }
 
     if (max>threshhold && !highFived){
