@@ -7,7 +7,7 @@ var port = process.env.PORT || 8080;
 var games = {};
 
 app.use(express.static("public"));
-app.use(favicon(__dirname + "/favicon.ico"))
+app.use(favicon(__dirname + '/favicon.ico'));
 app.set("view engine", "ejs");
 
 app.get("/", function(req, res) {
