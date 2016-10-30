@@ -85,9 +85,11 @@ io.on("connection", function(socket) {
     r = randomId();
     games[r] = {};
 
-    for (var key in games[gameId]) {
-      socket.broadcast.to(key).emit("rematch", r);
-      socket.emit("rematch", r);
+    if (Object.keys(games[gameId]).length == 2) {
+      for (var key in games[gameId]) {
+        socket.broadcast.to(key).emit("rematch", r);
+        socket.emit("rematch", r);
+      }
     }
   });
 
