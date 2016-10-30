@@ -56,6 +56,10 @@ p {
   letter-spacing: 2px;
 }
 
+#status {
+  font-size: 20px;
+}
+
 h2 {
   font-weight:800;
   text-align: center;
