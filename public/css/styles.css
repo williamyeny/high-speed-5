@@ -40,6 +40,13 @@ p {
   letter-spacing: 2px;
 }
 
+h2 {
+  font-weight:800;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom:100px;
+}
+
 h1 {
   font-weight:800;
 

@@ -22,9 +22,9 @@ socket.on("init", function(data) {
 
 socket.on("done", function(s) {
   if (s == "win") {
-    document.getElementById("status").innerHTML = "// VICTORY //";
+    document.getElementById("status").innerHTML = "|| VICTORY ||";
   } else {
-    document.getElementById("status").innerHTML = "// DEFEAT //";
+    document.getElementById("status").innerHTML = "|| DEFEAT ||";
   }
   document.getElementById("gameId").id = "rematch";
   document.getElementById("rematch").innerHTML = "REMATCH";

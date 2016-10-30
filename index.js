@@ -37,14 +37,14 @@ app.get("/game/:gameId", function(req, res) {
   var gameId = req.params.gameId;
   console.log("GET");
   if (!(gameId in games)) {
-    res.render("oops", {message: "Game not found!"});
+    res.render("oops", {message: "GAME DOES NOT EXIST"});
     return;
   } else {
     console.log("gameId: " + gameId);
     console.log("games: " + games);
   }
   if (Object.keys(games[gameId]).length == 2) {
-    res.render('oops', {message: "This game is full!"});
+    res.render('oops', {message: "GAME IS FULL"});
   }
 
 
